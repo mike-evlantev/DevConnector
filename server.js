@@ -1,6 +1,5 @@
 const express = require("express");
 const connectDb = require("./config/db");
-const bodyParser = require("body-parser");
 
 const auth = require("./routes/api/auth");
 const users = require("./routes/api/users");
@@ -9,12 +8,11 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
-// Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 // Connect Database
 connectDb();
+
+// Init Middleware
+app.use(express.json({ extended: false })); // allows to get data from request body
 
 app.get("/", (req, res) => res.send("Hello!"));
 
