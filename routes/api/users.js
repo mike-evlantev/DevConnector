@@ -9,11 +9,11 @@ require("dotenv").config();
 // Load User Model
 const User = require("../../models/User");
 
-// @route   POST api/users/register
+// @route   POST api/users
 // @desc    Register User
 // @access  Public
 router.post(
-  "/register",
+  "/",
   [
     check("name", "Name is required")
       .not()
