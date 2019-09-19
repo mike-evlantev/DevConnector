@@ -16,7 +16,7 @@ const Register = () => {
     if (password !== password2) {
       console.log("Passwords do not match");
     } else {
-      console.log(formData);
+      console.log("Registered successfully");
     }
   };
   return (
@@ -25,7 +25,7 @@ const Register = () => {
         <div className="col-md"></div>
         <div className="col-md">
           <div className="form-container">
-            <h5 className="text-center">Create your account</h5>
+            <h5 className="text-center">Create account</h5>
             <form onSubmit={e => onSubmit(e)}>
               <div className="form-group">
                 <input
@@ -46,6 +46,10 @@ const Register = () => {
                   value={email}
                   onChange={onChange}
                 />
+                <small className="form-text text-muted">
+                  Have a Gravat? Register with your Gravatar email for a profile
+                  image
+                </small>
               </div>
               <div className="form-group">
                 <input
