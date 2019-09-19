@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import AuthContext from "../../context/auth/authContext";
 // import ContactContext from "../../context/contact/contactContext";
 
-const Navbar = ({ props, title, icon }) => {
+const Navbar = ({ title, icon }) => {
   const { isAuthenticated, logout, user } = {}; //useContext(AuthContext);
   const { clearContacts } = {}; //useContext(ContactContext);
   const handleLogout = () => {
@@ -53,13 +53,11 @@ const Navbar = ({ props, title, icon }) => {
     </Fragment>
   );
 
-  const isLanding = this.props.match;
-
   return (
-    <nav className={"navbar navbar-expand-lg navbar-dark fixed-top"}>
+    <nav className={"navbar navbar-expand-lg navbar-light bg-light"}>
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <i className={icon} /> {title} {this.props.match}
+          <i className={icon} /> {title}
         </Link>
         <button
           className="navbar-toggler"
