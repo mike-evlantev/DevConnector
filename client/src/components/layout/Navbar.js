@@ -1,15 +1,19 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../actions/auth";
 // import AuthContext from "../../context/auth/authContext";
 // import ContactContext from "../../context/contact/contactContext";
 
-const Navbar = ({ title, icon }) => {
-  const { isAuthenticated, logout, user } = {}; //useContext(AuthContext);
-  const { clearContacts } = {}; //useContext(ContactContext);
+const Navbar = ({
+  title,
+  icon,
+  auth: { isAuthenticated, loading, user },
+  logout
+}) => {
   const handleLogout = () => {
     logout();
-    clearContacts();
   };
   const authLinks = (
     <Fragment>
@@ -72,7 +76,9 @@ const Navbar = ({ title, icon }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-            {isAuthenticated ? authLinks : guestLinks}
+            {!loading && (
+              <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+            )}
           </ul>
         </div>
       </div>
@@ -82,11 +88,21 @@ const Navbar = ({ title, icon }) => {
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 Navbar.defaultProps = {
   title: "DevConnector",
   icon: "fas fa-code"
 };
-export default Navbar;
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);
