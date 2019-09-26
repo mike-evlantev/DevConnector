@@ -17,6 +17,12 @@ const Navbar = ({
   };
   const authLinks = (
     <Fragment>
+      <li className="nav-item">
+        <Link className="nav-link" to="/dashboard">
+          <i className="fas fa-tachometer-alt"></i>{" "}
+          <span className="hide-sm">Dashboard</span>
+        </Link>
+      </li>
       <li className="nav-item dropdown">
         <button
           className="btn btn-light nav-link dropdown-toggle"
