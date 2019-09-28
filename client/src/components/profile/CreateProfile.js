@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { createProfile } from "../../actions/profile";
 
-const CreateProfile = ({}) => {
+const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -18,6 +19,10 @@ const CreateProfile = ({}) => {
     instagram: ""
   });
 
+  const [displaySocialInputs, toggleSocialInputs] = useState(false);
+  const handleSocialInputsToggle = () => {
+    toggleSocialInputs(!displaySocialInputs);
+  };
   const {
     company,
     website,
@@ -33,6 +38,14 @@ const CreateProfile = ({}) => {
     instagram
   } = formData;
 
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
+
   return (
     <div className="container">
       <h5 classNameName="large text-primary text-center">
@@ -43,9 +56,14 @@ const CreateProfile = ({}) => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
-          <select name="status" className="form-control">
+          <select
+            name="status"
+            className="form-control"
+            value={status}
+            onChange={onChange}
+          >
             <option value="0">* Select Professional Status</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
@@ -67,6 +85,8 @@ const CreateProfile = ({}) => {
               placeholder="Company"
               name="company"
               className="form-control"
+              value={company}
+              onChange={onChange}
             />
             <small className="form-text text-muted">
               Could be your own company or one you work for
@@ -78,6 +98,8 @@ const CreateProfile = ({}) => {
               placeholder="Website"
               name="website"
               className="form-control"
+              value={website}
+              onChange={onChange}
             />
             <small className="form-text text-muted">
               Could be your own or a company website
@@ -91,6 +113,8 @@ const CreateProfile = ({}) => {
               placeholder="Location"
               name="location"
               className="form-control"
+              value={location}
+              onChange={onChange}
             />
             <small className="form-text text-muted">
               City & state suggested (eg. Boston, MA)
@@ -102,6 +126,8 @@ const CreateProfile = ({}) => {
               placeholder="Github Username"
               name="githubusername"
               className="form-control"
+              value={githubusername}
+              onChange={onChange}
             />
             <small className="form-text text-muted">
               Include your Github username to display your latest repos
@@ -114,6 +140,8 @@ const CreateProfile = ({}) => {
             placeholder="* Skills"
             name="skills"
             className="form-control"
+            value={skills}
+            onChange={onChange}
           />
           <small className="form-text text-muted">
             Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
@@ -124,6 +152,8 @@ const CreateProfile = ({}) => {
             placeholder="A short bio of yourself"
             name="bio"
             className="form-control"
+            value={bio}
+            onChange={onChange}
           ></textarea>
           <small className="form-text text-muted">
             Tell us a little about yourself
@@ -131,58 +161,77 @@ const CreateProfile = ({}) => {
         </div>
 
         <div className="my-2">
-          <button type="button" className="btn btn-light">
+          <button
+            onClick={handleSocialInputsToggle}
+            type="button"
+            className="btn btn-light"
+          >
             Add Social Network Links
           </button>
-          <span>Optional</span>
+          <span className="ml-1 text-muted font-weight-light font-italic">
+            Optional
+          </span>
         </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <input
-              type="text"
-              name="twitter"
-              className="form-control fontAwesome"
-              placeholder="&#xf099; twitter"
-            />
-          </div>
-          <div className="form-group col-md-6">
-            <input
-              type="text"
-              name="facebook"
-              className="form-control fontAwesome"
-              placeholder="&#xf082; facebook"
-            />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group col-md-4">
-            <input
-              type="text"
-              name="youtube"
-              className="form-control fontAwesome"
-              placeholder="&#xf167; youtube"
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <input
-              type="text"
-              name="linkedin"
-              className="form-control fontAwesome"
-              placeholder="&#xf08c; linkedin"
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <input
-              type="text"
-              name="instagram"
-              className="form-control fontAwesome"
-              placeholder="&#xf16d; instagram"
-            />
-          </div>
-        </div>
-        <Link to="/dashboard">
-          <button className="btn btn-light">Go Back</button>
+        {displaySocialInputs && (
+          <Fragment>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <input
+                  type="text"
+                  name="twitter"
+                  className="form-control fontAwesome"
+                  placeholder="&#xf099; twitter"
+                  value={twitter}
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <input
+                  type="text"
+                  name="facebook"
+                  className="form-control fontAwesome"
+                  placeholder="&#xf082; facebook"
+                  value={facebook}
+                  onChange={onChange}
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-4">
+                <input
+                  type="text"
+                  name="youtube"
+                  className="form-control fontAwesome"
+                  placeholder="&#xf167; youtube"
+                  value={youtube}
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group col-md-4">
+                <input
+                  type="text"
+                  name="linkedin"
+                  className="form-control fontAwesome"
+                  placeholder="&#xf08c; linkedin"
+                  value={linkedin}
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group col-md-4">
+                <input
+                  type="text"
+                  name="instagram"
+                  className="form-control fontAwesome"
+                  placeholder="&#xf16d; instagram"
+                  value={instagram}
+                  onChange={onChange}
+                />
+              </div>
+            </div>
+          </Fragment>
+        )}
+        <Link to="/dashboard" className="btn btn-light">
+          Go Back
         </Link>
         <input type="submit" className="btn btn-primary float-right" />
       </form>
@@ -190,4 +239,7 @@ const CreateProfile = ({}) => {
   );
 };
 
-export default CreateProfile;
+export default connect(
+  null,
+  { createProfile }
+)(withRouter(CreateProfile));
