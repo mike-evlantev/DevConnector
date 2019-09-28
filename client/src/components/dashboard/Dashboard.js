@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
+import DashboardActions from "./DashboardActions";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -11,7 +12,8 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+    // eslint-disable-next-line
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
@@ -22,7 +24,9 @@ const Dashboard = ({
         <i className="fas fa-user"></i> Welcome {user && user.name}
       </p>
       {!loading && profile !== null ? (
-        <Fragment>has</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <p className="lead">You have not created a profile</p>
