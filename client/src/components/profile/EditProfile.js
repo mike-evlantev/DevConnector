@@ -74,10 +74,9 @@ const EditProfile = ({
 
   return (
     <div className="container">
-      <h5 className="large text-primary text-center">Create Your Profile</h5>
+      <h5 className="large text-primary text-center">Edit Your Profile</h5>
       <p className="lead">
-        <i className="fas fa-user"></i> Let's get some information to make your
-        profile stand out
+        <i className="fas fa-user"></i> Add some changes to your profile
       </p>
       <small>* = required field</small>
       <form onSubmit={onSubmit}>
@@ -88,7 +87,7 @@ const EditProfile = ({
             value={status}
             onChange={onChange}
           >
-            <option value="0">* Select Professional Status</option>
+            <option>* Select Professional Status</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
             <option value="Senior Developer">Senior Developer</option>
