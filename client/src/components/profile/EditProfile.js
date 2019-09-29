@@ -74,9 +74,7 @@ const EditProfile = ({
 
   return (
     <div className="container">
-      <h5 classNameName="large text-primary text-center">
-        Create Your Profile
-      </h5>
+      <h5 className="large text-primary text-center">Create Your Profile</h5>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
         profile stand out
