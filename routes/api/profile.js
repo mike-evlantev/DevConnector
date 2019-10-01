@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const User = require("../../models/User");
 const Profile = require("../../models/Profile");
+const Post = require("../../models/Post");
 
 // @route   GET api/profile/me
 // @desc    Get current users profile
@@ -148,12 +149,12 @@ router.get("/user/:user_id", async (req, res) => {
 // @access  Private
 router.delete("/", auth, async (req, res) => {
   try {
-    // Remove profile
+    // 1. Remove users posts
+    await Post.deleteMany({ user: req.user.id });
+    // 2. Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
-    // Remove user
+    // 3. Remove user
     await User.findOneAndRemove({ _id: req.user.id });
-    // TODO: Remove users posts
-    //
     res.json({ msg: "User removed" });
   } catch (error) {
     console.error(error.message);
