@@ -73,3 +73,10 @@
   line-height: 0.5;
   border-radius: 0.2rem;
 }
+
+/* Profile */
+.avatar {
+  width: 75px;
+  height: 75px;
+  margin: 10px;
+}
