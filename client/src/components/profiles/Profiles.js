@@ -24,12 +24,12 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
 
   return (
     <div className="mt-3">
-      {groupedProfiles.length === 0 || loading ? (
+      {(groupedProfiles && groupedProfiles.length === 0) || loading ? (
         <Spinner />
       ) : (
         <Fragment>
           <p className="text-primary">Connect with Developers</p>
-          {groupedProfiles.length > 0 ? (
+          {groupedProfiles && groupedProfiles.length > 0 ? (
             groupedProfiles.map((group, i) => (
               <div key={i} className="row">
                 {group.map((profile, i) => (
