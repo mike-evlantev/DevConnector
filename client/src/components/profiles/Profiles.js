@@ -8,7 +8,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();
     // eslint-disable-next-line
-  }, []);
+  }, [getProfiles]);
 
   // Split all profiles into groups of 3
   const groupSize = 3;
