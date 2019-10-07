@@ -13,11 +13,13 @@ const ProfileItem = ({
   return (
     <div>
       <div className="card flex-sm-row mb-gutter">
-        <img
-          className="avatar text-center rounded-circle"
-          src={avatar}
-          alt="gravatar"
-        />
+        <Link to={`/profiles/${_id}`}>
+          <img
+            className="avatar text-center rounded-circle"
+            src={avatar}
+            alt="gravatar"
+          />
+        </Link>
         <div className="card-body">
           <h5 className="card-title text-truncate">{name}</h5>
           <p className="card-text text-truncate">
