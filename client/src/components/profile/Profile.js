@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
+import ProfileTop from "./ProfileTop";
 import { getProfileByUserId } from "../../actions/profile";
 
 const Profile = ({
@@ -13,7 +14,7 @@ const Profile = ({
   useEffect(() => {
     getProfileByUserId(match.params.id);
     // eslint-disable-next-line
-  }, [getProfileByUserId]);
+  }, [getProfileByUserId, match.params.id]);
 
   return (
     <div>
@@ -21,7 +22,7 @@ const Profile = ({
         <Spinner />
       ) : (
         <div>
-          Profile{" "}
+          <ProfileTop profile={profile} />
           <Link to="/profiles" className="btn btn-light">
             Go Back
           </Link>
