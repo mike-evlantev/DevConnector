@@ -116,7 +116,9 @@ router.post(
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    let profiles = await Profile.find()
+      .sort("user")
+      .populate("user", ["name", "avatar"]);
     res.json(profiles);
   } catch (error) {
     console.error(error.message);
