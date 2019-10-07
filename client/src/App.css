@@ -80,3 +80,9 @@
   height: 75px;
   margin: 10px;
 }
+
+.avatar-lg {
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+}
