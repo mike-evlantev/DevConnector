@@ -27,7 +27,7 @@ const ProfileItem = ({
               {location && <span>{location}</span>}
             </small>
           </p>
-          <p className="text-truncate">
+          <span>
             {" "}
             Skills:
             {skills.slice(0, 4).map((skill, i) => (
@@ -35,7 +35,7 @@ const ProfileItem = ({
                 {skill.toLowerCase()}
               </span>
             ))}
-          </p>
+          </span>
         </div>
       </div>
     </div>
