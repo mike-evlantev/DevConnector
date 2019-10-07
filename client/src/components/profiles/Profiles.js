@@ -24,7 +24,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
 
   return (
     <div className="mt-3">
-      {loading ? (
+      {groupedProfiles.length === 0 || loading ? (
         <Spinner />
       ) : (
         <Fragment>
