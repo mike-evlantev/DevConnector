@@ -46,20 +46,55 @@ const ProfileTop = ({
           </p>
           <div className="btn-group" role="group" aria-label="First group">
             {social && social.twitter && (
-              <a href={social.twitter} className="btn btn-secondary">
+              <a
+                href={social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
                 <i className="fab fa-twitter"></i>
               </a>
             )}
-
-            <button type="button" className="btn btn-secondary">
-              2
-            </button>
-            <button type="button" className="btn btn-secondary">
-              3
-            </button>
-            <button type="button" className="btn btn-secondary">
-              4
-            </button>
+            {social && social.facebook && (
+              <a
+                href={social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                <i className="fab fa-facebook-f"></i>
+              </a>
+            )}
+            {social && social.linkedin && (
+              <a
+                href={social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+            )}
+            {social && social.youtube && (
+              <a
+                href={social.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                <i className="fab fa-youtube"></i>
+              </a>
+            )}
+            {social && social.instagram && (
+              <a
+                href={social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+            )}
           </div>
         </div>
       </div>
