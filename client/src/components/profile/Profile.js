@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import ProfileTop from "./ProfileTop";
+import ProfileAbout from "./ProfileAbout";
 import { getProfileByUserId } from "../../actions/profile";
 
 const Profile = ({
@@ -17,23 +18,28 @@ const Profile = ({
   }, [getProfileByUserId, match.params.id]);
 
   return (
-    <div>
+    <Fragment>
       {profile === null || loading ? (
         <Spinner />
       ) : (
-        <div>
-          <ProfileTop profile={profile} />
-          <Link to="/profiles" className="btn btn-light">
-            Go Back
-          </Link>
-          {isAuthenticated && !authLoading && user._id === profile.user._id && (
-            <Link to="/edit-profile" className="btn btn-dark float-right">
-              Edit
+        <Fragment>
+          <div className="card">
+            <ProfileTop profile={profile} />
+            <ProfileAbout profile={profile} />
+          </div>
+          <div className="mt-2">
+            <Link to="/profiles" className="btn btn-light">
+              Go Back
             </Link>
-          )}
-        </div>
+            {isAuthenticated && !authLoading && user._id === profile.user._id && (
+              <Link to="/edit-profile" className="btn btn-dark float-right">
+                Edit
+              </Link>
+            )}
+          </div>
+        </Fragment>
       )}
-    </div>
+    </Fragment>
   );
 };
 
