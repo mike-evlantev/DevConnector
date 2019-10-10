@@ -36,7 +36,6 @@ const ProfileTop = ({
           ) : (
             <Fragment>{company && <span> at {company}</span>}</Fragment>
           )}
-          {}
         </p>
         <p className="card-text">
           <small className="text-muted">
