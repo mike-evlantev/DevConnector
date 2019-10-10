@@ -11,41 +11,41 @@ const ProfileTop = ({
   }
 }) => {
   return (
-    <div>
-      <div className="card">
-        <img
-          src={avatar}
-          className="mx-auto d-block avatar-lg rounded-circle"
-          alt="avatar"
-        />
-        <div className="card-body text-center">
-          <h5 className="card-title">{name}</h5>
-          <p className="lead">
-            {status}
-            {website ? (
-              <Fragment>
-                {company && (
-                  <span>
-                    {" "}
-                    at{" "}
-                    <a href={website} target="_blank" rel="noopener noreferrer">
-                      {company}
-                    </a>
-                  </span>
-                )}
-              </Fragment>
-            ) : (
-              <Fragment>{company && <span> at {company}</span>}</Fragment>
-            )}
-            {}
-          </p>
-          <p className="card-text">
-            <small className="text-muted">
-              {location && <span>{location}</span>}
-            </small>
-          </p>
+    <Fragment>
+      <img
+        src={avatar}
+        className="mx-auto d-block avatar-lg rounded-circle"
+        alt="avatar"
+      />
+      <div className="card-body text-center">
+        <h5 className="card-title">{name}</h5>
+        <p className="lead">
+          {status}
+          {website ? (
+            <Fragment>
+              {company && (
+                <span>
+                  {" "}
+                  at{" "}
+                  <a href={website} target="_blank" rel="noopener noreferrer">
+                    {company}
+                  </a>
+                </span>
+              )}
+            </Fragment>
+          ) : (
+            <Fragment>{company && <span> at {company}</span>}</Fragment>
+          )}
+          {}
+        </p>
+        <p className="card-text">
+          <small className="text-muted">
+            {location && <span>{location}</span>}
+          </small>
+        </p>
+        {social && (
           <div className="btn-group" role="group" aria-label="First group">
-            {social && social.twitter && (
+            {social.twitter && (
               <a
                 href={social.twitter}
                 target="_blank"
@@ -55,7 +55,7 @@ const ProfileTop = ({
                 <i className="fab fa-twitter"></i>
               </a>
             )}
-            {social && social.facebook && (
+            {social.facebook && (
               <a
                 href={social.facebook}
                 target="_blank"
@@ -65,7 +65,7 @@ const ProfileTop = ({
                 <i className="fab fa-facebook-f"></i>
               </a>
             )}
-            {social && social.linkedin && (
+            {social.linkedin && (
               <a
                 href={social.linkedin}
                 target="_blank"
@@ -75,7 +75,7 @@ const ProfileTop = ({
                 <i className="fab fa-linkedin-in"></i>
               </a>
             )}
-            {social && social.youtube && (
+            {social.youtube && (
               <a
                 href={social.youtube}
                 target="_blank"
@@ -85,7 +85,7 @@ const ProfileTop = ({
                 <i className="fab fa-youtube"></i>
               </a>
             )}
-            {social && social.instagram && (
+            {social.instagram && (
               <a
                 href={social.instagram}
                 target="_blank"
@@ -96,9 +96,9 @@ const ProfileTop = ({
               </a>
             )}
           </div>
-        </div>
+        )}
       </div>
-    </div>
+    </Fragment>
   );
 };
 
