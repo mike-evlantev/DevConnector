@@ -5,6 +5,7 @@ import Spinner from "../layout/Spinner";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
+import ProfileEducation from "./ProfileEducation";
 import { getProfileByUserId } from "../../actions/profile";
 
 const Profile = ({
@@ -28,6 +29,7 @@ const Profile = ({
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
             <ProfileExperience profile={profile} />
+            <ProfileEducation profile={profile} />
           </div>
           <div className="my-2">
             <Link to="/profiles" className="btn btn-light">
