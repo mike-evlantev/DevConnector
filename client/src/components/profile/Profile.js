@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
+import ProfileExperience from "./ProfileExperience";
 import { getProfileByUserId } from "../../actions/profile";
 
 const Profile = ({
@@ -26,8 +27,9 @@ const Profile = ({
           <div className="card">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            <ProfileExperience profile={profile} />
           </div>
-          <div className="mt-2">
+          <div className="my-2">
             <Link to="/profiles" className="btn btn-light">
               Go Back
             </Link>
