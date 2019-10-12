@@ -19,13 +19,13 @@ const Navbar = ({
     <Fragment>
       <li className="nav-item">
         <Link className="nav-link" to="/dashboard">
-          <i className="fas fa-tachometer-alt"></i>{" "}
+          {/* <i className="fas fa-tachometer-alt"></i>{" "} */}
           <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/posts">
-          <i className="fa fa-sticky-note-o"></i>{" "}
+          {/* <i className="fa fa-sticky-note-o"></i>{" "} */}
           <span className="hide-sm">Posts</span>
         </Link>
       </li>
@@ -37,16 +37,20 @@ const Navbar = ({
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i className="fas fa-user"></i> {user && user.name}
+          {/*<i className="fas fa-user"></i>*/}
+          {user && user.name}
         </button>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          {/*TODO: */}
-          {/* <a className="dropdown-item" href="#">
-            Profile
-          </a>
-          <div className="dropdown-divider"></div> */}
-          <Link className="nav-link" to="/login" onClick={handleLogout}>
-            <i className="fas fa-sign-out-alt"></i>{" "}
+          {user && (
+            <Fragment>
+              <Link className="dropdown-item" to={`/profile/${user._id}`}>
+                <span className="hide-sm">Profile</span>
+              </Link>
+              <div className="dropdown-divider"></div>
+            </Fragment>
+          )}
+          <Link className="dropdown-item" to="/login" onClick={handleLogout}>
+            {/* <i className="fas fa-sign-out-alt"></i>{" "} */}
             <span className="hide-sm">Logout</span>
           </Link>
         </div>
@@ -90,7 +94,7 @@ const Navbar = ({
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/profiles">
-                <i className="far fa-lightbulb"></i> Developers
+                Developers
               </Link>
             </li>
             {!loading && (
