@@ -6,6 +6,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
 import { getProfileByUserId } from "../../actions/profile";
 
 const Profile = ({
@@ -30,6 +31,9 @@ const Profile = ({
             <ProfileAbout profile={profile} />
             <ProfileExperience profile={profile} />
             <ProfileEducation profile={profile} />
+            {profile.githubusername && (
+              <ProfileGithub username={profile.githubusername} />
+            )}
           </div>
           <div className="my-2">
             <Link to="/profiles" className="btn btn-light">
