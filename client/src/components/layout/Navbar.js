@@ -23,6 +23,12 @@ const Navbar = ({
           <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/posts">
+          <i className="fa fa-sticky-note-o"></i>{" "}
+          <span className="hide-sm">Posts</span>
+        </Link>
+      </li>
       <li className="nav-item dropdown">
         <button
           className="btn btn-light nav-link dropdown-toggle"
@@ -84,7 +90,7 @@ const Navbar = ({
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/profiles">
-                Developers
+                <i className="far fa-lightbulb"></i> Developers
               </Link>
             </li>
             {!loading && (
