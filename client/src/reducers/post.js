@@ -7,10 +7,10 @@ const initialState = {
   error: {}
 };
 
-export default function(state = initalState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
 
-  switch (key) {
+  switch (type) {
     case GET_POSTS:
       return { ...state, posts: payload, loading: false };
     case POST_ERROR:
