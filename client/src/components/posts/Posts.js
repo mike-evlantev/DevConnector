@@ -2,15 +2,25 @@ import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions/post";
 import Spinner from "../layout/Spinner";
+import PostItem from "./PostItem";
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
   return (
-    <div>
-      <div>Posts</div>
-    </div>
+    <Fragment>
+      {posts === null || loading ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <div>Posts</div>
+          {posts.map(post => (
+            <PostItem key={post._id} post={post} />
+          ))}
+        </Fragment>
+      )}
+    </Fragment>
   );
 };
 
