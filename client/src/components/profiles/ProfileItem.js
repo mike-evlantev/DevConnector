@@ -15,7 +15,7 @@ const ProfileItem = ({
       <div className="card flex-sm-row mb-gutter">
         <Link to={`/profile/${_id}`}>
           <img
-            className="avatar text-center rounded-circle"
+            className="avatar-md text-center rounded-circle"
             src={avatar}
             alt="gravatar"
           />
