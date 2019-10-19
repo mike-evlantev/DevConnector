@@ -2,12 +2,33 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
+import { addLike, removeLike } from "../../actions/post";
 
 const PostItem = ({
+  addLike,
+  removeLike,
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date }
 }) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState();
+
+  // const isLikedInit = async () => {
+  //   const liked =
+  //     (await likes.filter(like => like.user.toString() === auth.user._id)
+  //       .length) > 0;
+  //   setIsLiked(liked);
+  // };
+
+  const onLikeClicked = e => {
+    e.preventDefault();
+    setIsLiked(!isLiked);
+    if (isLiked) {
+      addLike(_id);
+    } else {
+      removeLike(_id);
+    }
+  };
+
   return (
     <div className="card mt-2">
       <div className="card-body">
@@ -30,30 +51,30 @@ const PostItem = ({
         </div>
       </div>
       <div className="card-footer bg-transparent">
-        <div className="float-left">
+        {/* TODO: Likes */}
+        {/* <div className="float-left">
           <div
             className="btn-group-toggle"
-            onClick={() => setIsLiked(!isLiked)}
+            onClick={e => onLikeClicked(e)}
             data-toggle="buttons"
           >
             <div className="mt-1 text-primary">
               <input
                 type="checkbox"
-                onChange={event => setIsLiked(event.currentTarget.checked)}
                 checked={isLiked}
+                onChange={event => setIsLiked(event.currentTarget.checked)}
                 hidden
               />{" "}
               <i
-                className={isLiked ? "fas fa-thumbs-up" : "far fa-thumbs-up"}
+                className={isLiked ? "far fa-thumbs-up" : "fas fa-thumbs-up"}
               ></i>
               <span className="badge bg-transparent text-primary">
                 {likes.length > 0 ? likes.length : ""}
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="float-right">
-          {}
           <Link to={`/posts/${_id}`} className="btn btn-outline-success btn-sm">
             Discussion
             <span className="badge badge-success ml-1">{comments.length}</span>
@@ -73,4 +94,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(PostItem);
+export default connect(
+  mapStateToProps,
+  { addLike, removeLike }
+)(PostItem);
