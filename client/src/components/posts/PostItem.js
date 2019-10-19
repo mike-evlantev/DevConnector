@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, deletePost } from "../../actions/post";
 
 const PostItem = ({
   addLike,
   removeLike,
+  deletePost,
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date }
 }) => {
@@ -19,15 +20,15 @@ const PostItem = ({
   //   setIsLiked(liked);
   // };
 
-  const onLikeClicked = e => {
-    e.preventDefault();
-    setIsLiked(!isLiked);
-    if (isLiked) {
-      addLike(_id);
-    } else {
-      removeLike(_id);
-    }
-  };
+  // const onLikeClicked = e => {
+  //   e.preventDefault();
+  //   setIsLiked(!isLiked);
+  //   if (isLiked) {
+  //     addLike(_id);
+  //   } else {
+  //     removeLike(_id);
+  //   }
+  // };
 
   return (
     <div className="card mt-2">
@@ -76,13 +77,16 @@ const PostItem = ({
         </div> */}
         <div className="float-right">
           <Link to={`/posts/${_id}`} className="btn btn-outline-success btn-sm">
-            Discussion
-            <span className="badge badge-success ml-1">{comments.length}</span>
+            <i className="fas fa-comments"></i>
+            <span className="badge badge-light ml-1">{comments.length}</span>
           </Link>
           {!auth.loading && user === auth.user._id && (
-            <a href="!#" className="btn btn-danger btn-sm ml-2">
+            <button
+              onClick={e => deletePost(_id)}
+              className="btn btn-danger btn-sm ml-2"
+            >
               <i className="far fa-trash-alt"></i>
-            </a>
+            </button>
           )}
         </div>
       </div>
@@ -96,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addLike, removeLike }
+  { addLike, removeLike, deletePost }
 )(PostItem);
