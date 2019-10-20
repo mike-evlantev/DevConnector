@@ -35,11 +35,13 @@ const PostItem = ({
       <div className="card-body">
         <div className="row">
           <div className="col-sm-3 text-center">
-            <img
-              className="avatar-md text-center rounded-circle"
-              src={avatar}
-              alt="gravatar"
-            />
+            <Link to={`/profile/${user}`}>
+              <img
+                className="avatar-md text-center rounded-circle"
+                src={avatar}
+                alt="gravatar"
+              />
+            </Link>
             <p>{name}</p>
           </div>
           <div className="col-sm-9">
