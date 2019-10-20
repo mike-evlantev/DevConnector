@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
@@ -9,7 +9,8 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date }
+  post: { _id, text, name, avatar, user, likes, comments, date },
+  showActions
 }) => {
   const [isLiked, setIsLiked] = useState();
 
@@ -53,9 +54,11 @@ const PostItem = ({
           </div>
         </div>
       </div>
-      <div className="card-footer bg-transparent">
-        {/* TODO: Likes */}
-        {/* <div className="float-left">
+      {showActions && (
+        <Fragment>
+          <div className="card-footer bg-transparent">
+            {/* TODO: Likes */}
+            {/* <div className="float-left">
           <div
             className="btn-group-toggle"
             onClick={e => onLikeClicked(e)}
@@ -77,21 +80,28 @@ const PostItem = ({
             </div>
           </div>
         </div> */}
-        <div className="float-right">
-          <Link to={`/posts/${_id}`} className="btn btn-outline-success btn-sm">
-            <i className="fas fa-comments"></i>
-            <span className="badge badge-light ml-1">{comments.length}</span>
-          </Link>
-          {!auth.loading && user === auth.user._id && (
-            <button
-              onClick={e => deletePost(_id)}
-              className="btn btn-danger btn-sm ml-2"
-            >
-              <i className="far fa-trash-alt"></i>
-            </button>
-          )}
-        </div>
-      </div>
+            <div className="float-right">
+              <Link
+                to={`/posts/${_id}`}
+                className="btn btn-outline-success btn-sm"
+              >
+                <i className="fas fa-comments"></i>
+                <span className="badge badge-light ml-1">
+                  {comments.length}
+                </span>
+              </Link>
+              {!auth.loading && user === auth.user._id && (
+                <button
+                  onClick={e => deletePost(_id)}
+                  className="btn btn-danger btn-sm ml-2"
+                >
+                  <i className="far fa-trash-alt"></i>
+                </button>
+              )}
+            </div>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };
