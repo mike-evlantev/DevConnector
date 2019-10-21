@@ -49,25 +49,13 @@ const PostFormModal = ({ addPost }) => {
                   type="submit"
                   className="btn btn-success btn-sm my-2 float-right"
                   data-toggle="modal"
-                  data-target="#exampleModal"
+                  data-target="#postModal"
                 >
                   <i className="fas fa-plus"></i>
                 </button>
               </div>
             </form>
           </div>
-          {/* <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" className="btn btn-primary">
-              Save changes
-            </button>
-          </div> */}
         </div>
       </div>
     </div>
