@@ -21,8 +21,8 @@ const CommentItem = ({
       <div className="media-body">
         <div className="d-flex">
           <small>{name}</small>
-          <small className="ml-auto">
-            <Moment format="YYYY/MM/DD">{date}</Moment>
+          <small className="ml-auto text-muted">
+            <Moment fromNow>{date}</Moment>
           </small>
         </div>
         {text}
