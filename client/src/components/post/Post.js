@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import PostItem from "../posts/PostItem";
-import CommentFormModal from "./CommentFormModal";
+import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import { getPost } from "../../actions/post";
 
@@ -20,22 +20,14 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
         <Link to="/posts" className="btn btn-light btn-sm">
           Go Back
         </Link>
-        <button
-          type="button"
-          className="btn btn-success btn-sm ml-auto"
-          data-toggle="modal"
-          data-target="#commentModal"
-        >
-          <i className="far fa-comment"></i>
-        </button>
       </div>
       <PostItem post={post} showActions={false} />
+      <CommentForm postId={post._id} />
       <ul className="media-list">
         {post.comments.map(comment => (
           <CommentItem key={comment._id} comment={comment} postId={post._id} />
         ))}
       </ul>
-      <CommentFormModal postId={post._id} />
     </Fragment>
   );
 };
