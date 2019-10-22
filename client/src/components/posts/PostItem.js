@@ -49,7 +49,7 @@ const PostItem = ({
             <span>{text}</span>
             <br />
             <small className="text-muted">
-              <Moment format="YYYY/MM/DD">{date}</Moment>
+              <Moment fromNow>{date}</Moment>
             </small>
           </div>
         </div>
