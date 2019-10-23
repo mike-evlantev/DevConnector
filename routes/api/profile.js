@@ -212,6 +212,7 @@ router.put(
     try {
       const profile = await Profile.findOne({ user: req.user.id });
       profile.experience.unshift(newExp);
+      profile.experience.sort((a, b) => new Date(b.from) - new Date(a.from));
       await profile.save();
       res.json(profile);
     } catch (error) {
@@ -364,6 +365,7 @@ router.put(
     try {
       const profile = await Profile.findOne({ user: req.user.id });
       profile.education.unshift(newEdu);
+      profile.education.sort((a, b) => new Date(b.from) - new Date(a.from));
       await profile.save();
       res.json(profile);
     } catch (error) {
