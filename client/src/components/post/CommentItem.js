@@ -7,7 +7,8 @@ import Moment from "react-moment";
 const CommentItem = ({
   postId,
   comment: { _id, text, name, avatar, user, date },
-  auth
+  auth,
+  deleteComment
 }) => {
   return (
     <li className="media">
@@ -20,12 +21,19 @@ const CommentItem = ({
       </Link>
       <div className="media-body">
         <div className="d-flex">
-          <small>{name}</small>
-          <small className="ml-auto text-muted">
-            <Moment fromNow>{date}</Moment>
-          </small>
+          <small className="text-primary">@{name}</small>
+          <div className="ml-auto">
+            <small className="text-muted">
+              <Moment fromNow>{date}</Moment>
+            </small>{" "}
+            {!auth.loading && user === auth.user._id && (
+              <a href="#!" onClick={e => deleteComment(postId, _id)}>
+                <i className="fas fa-trash-alt text-danger"></i>
+              </a>
+            )}
+          </div>
         </div>
-        {text}
+        <small className="text-break">{text}</small>
       </div>
     </li>
   );
