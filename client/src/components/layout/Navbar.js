@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 // import AuthContext from "../../context/auth/authContext";
@@ -10,7 +10,8 @@ const Navbar = ({
   title,
   icon,
   auth: { isAuthenticated, loading, user },
-  logout
+  logout,
+  location
 }) => {
   const handleLogout = () => {
     logout();
@@ -74,7 +75,14 @@ const Navbar = ({
   );
 
   return (
-    <nav className={"navbar navbar-expand-lg navbar-light bg-light"}>
+    <nav
+      className={
+        "navbar navbar-expand-lg" +
+        (location.pathname === "/"
+          ? " navbar-dark fixed-top"
+          : " navbar-light bg-light")
+      }
+    >
       <div className="container">
         <Link className="navbar-brand" to="/">
           <i className={icon} /> {title}
@@ -126,4 +134,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logout }
-)(Navbar);
+)(withRouter(Navbar));
