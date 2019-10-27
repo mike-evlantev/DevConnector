@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
@@ -12,7 +12,10 @@ const PostItem = ({
   post: { _id, text, name, avatar, user, likes, comments, date },
   showActions
 }) => {
-  const [isLiked, setIsLiked] = useState();
+  // const [isLiked, setIsLiked] = useState(
+  //   () =>
+  //     likes.filter(like => like.user.toString() === auth.user._id).length > 0
+  // );
 
   // const isLikedInit = async () => {
   //   const liked =
@@ -23,10 +26,13 @@ const PostItem = ({
 
   // const onLikeClicked = e => {
   //   e.preventDefault();
+  //   console.log("clicked: " + isLiked);
   //   setIsLiked(!isLiked);
   //   if (isLiked) {
+  //     console.log("add: " + isLiked);
   //     addLike(_id);
   //   } else {
+  //     console.log("remove: " + isLiked);
   //     removeLike(_id);
   //   }
   // };
@@ -57,29 +63,30 @@ const PostItem = ({
       {showActions && (
         <Fragment>
           <div className="card-footer bg-transparent">
-            {/* TODO: Likes */}
             {/* <div className="float-left">
-          <div
-            className="btn-group-toggle"
-            onClick={e => onLikeClicked(e)}
-            data-toggle="buttons"
-          >
-            <div className="mt-1 text-primary">
-              <input
-                type="checkbox"
-                checked={isLiked}
-                onChange={event => setIsLiked(event.currentTarget.checked)}
-                hidden
-              />{" "}
-              <i
-                className={isLiked ? "far fa-thumbs-up" : "fas fa-thumbs-up"}
-              ></i>
-              <span className="badge bg-transparent text-primary">
-                {likes.length > 0 ? likes.length : ""}
-              </span>
-            </div>
-          </div>
-        </div> */}
+              <div
+                className="btn-group-toggle"
+                onClick={e => onLikeClicked(e)}
+                data-toggle="buttons"
+              >
+                <div className="mt-1 text-primary">
+                  <input
+                    type="checkbox"
+                    checked={isLiked}
+                    onChange={event => setIsLiked(event.currentTarget.checked)}
+                    hidden
+                  />{" "}
+                  <i
+                    className={
+                      isLiked ? "fas fa-thumbs-up" : "far fa-thumbs-up"
+                    }
+                  ></i>
+                  <span className="badge bg-transparent text-primary">
+                    {likes.length > 0 ? likes.length : ""}
+                  </span>
+                </div>
+              </div>
+            </div> */}
             <div className="float-right">
               <Link
                 to={`/posts/${_id}`}
